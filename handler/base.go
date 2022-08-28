@@ -9,7 +9,3 @@ var Methods = map[string]func(r *gin.Engine, api string){
 	"/put":          RegisterPutData,
 	"/data/account": RegisterGetAccountData,
 }
-
-func registerMethod(r *gin.Engine, api string, f gin.HandlerFunc) {
-	r.GET(api, f)
-}

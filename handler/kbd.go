@@ -10,7 +10,7 @@ import (
 )
 
 func RegisterGetData(r *gin.Engine, api string) {
-	registerMethod(r, api, func(ctx *gin.Context) {
+	r.GET(api, func(ctx *gin.Context) {
 		req := &kdb.GetDataRequest{
 			Key: ctx.Query("key"),
 		}
@@ -23,7 +23,7 @@ func RegisterGetData(r *gin.Engine, api string) {
 }
 
 func RegisterPutData(r *gin.Engine, api string) {
-	registerMethod(r, api, func(ctx *gin.Context) {
+	r.GET(api, func(ctx *gin.Context) {
 		req := &kdb.PutDataRequest{
 			Key:   ctx.Query("key"),
 			Value: ctx.Query("value"),
@@ -37,7 +37,7 @@ func RegisterPutData(r *gin.Engine, api string) {
 }
 
 func RegisterGetAccountData(r *gin.Engine, api string) {
-	registerMethod(r, api, func(ctx *gin.Context) {
+	r.GET(api, func(ctx *gin.Context) {
 		req := &kdb.GetAccountDataRequest{
 			Address: ctx.Query("address"),
 		}
