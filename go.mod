@@ -3,7 +3,7 @@ module github.com/MonteCarloClub/kether_gin
 go 1.17
 
 require (
-	github.com/MonteCarloClub/KBD v0.1.1-0.20220828054714-80f970b2bcce
+	github.com/MonteCarloClub/KBD v0.1.1-0.20220829155428-6490b5bd2a03
 	github.com/cloudwego/kitex v0.1.4
 	github.com/gin-gonic/gin v1.8.1
 )

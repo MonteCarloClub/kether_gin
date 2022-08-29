@@ -7,7 +7,7 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.Static("/be", "./be")
+	//r.Static("/be", "./be")
 	for api, method := range handler.Methods {
 		method(r, api)
 	}

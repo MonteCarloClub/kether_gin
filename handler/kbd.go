@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"github.com/apache/thrift/lib/go/thrift"
 	"net/http"
 
 	kdb "github.com/MonteCarloClub/KBD/kitex_gen/api"
@@ -42,6 +43,22 @@ func RegisterGetAccountData(r *gin.Engine, api string) {
 			Address: ctx.Query("address"),
 		}
 		resp, err := client.KBDClient.GetAccountData(context.Background(), req)
+		if err != nil {
+			ctx.String(http.StatusBadRequest, "%v", err.Error())
+		}
+		ctx.String(http.StatusOK, resp.String())
+	})
+}
+
+func RegisterSetAccountData(r *gin.Engine, api string) {
+	r.GET(api, func(ctx *gin.Context) {
+		req := &kdb.SetAccountDataRequest{
+			Address: ctx.Query("address"),
+			Balance: thrift.StringPtr(ctx.Query("balance")),
+			Code:    thrift.StringPtr(ctx.Query("code")),
+			Nonce:   thrift.StringPtr(ctx.Query("nonce")),
+		}
+		resp, err := client.KBDClient.SetAccountData(context.Background(), req)
 		if err != nil {
 			ctx.String(http.StatusBadRequest, "%v", err.Error())
 		}
