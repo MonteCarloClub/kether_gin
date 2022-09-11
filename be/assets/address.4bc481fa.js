@@ -1,0 +1,1 @@
+const e=[{label:"\u4F59\u989D",key:"balance"},{label:"\u4EA4\u6613\u6570",key:"transactionCount"},{label:"\u603B\u652F\u51FA",key:"totalSent"},{label:"\u603B\u6536\u5165",key:"totalReceived"},{label:"\u603B\u624B\u7EED\u8D39",key:"totalFees"},{label:"\u8F6C\u8D26\u6B21\u6570",key:"tokenTransferCount"}];export{e as m};
