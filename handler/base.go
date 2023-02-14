@@ -5,8 +5,10 @@ import (
 )
 
 var Methods = map[string]func(r *gin.Engine, api string){
-	"api/get":              RegisterGetData,
-	"api/put":              RegisterPutData,
-	"api/data/account":     RegisterGetAccountData,
-	"api/data/account/set": RegisterSetAccountData,
+	"api/get/block":               RegisterGetBlockByHash,
+	"api/get/account/transaction": RegisterGetAccountTransaction,
+	"api/data/account":            RegisterGetAccountData,
+	"api/data/account/set":        RegisterTransaction,
+	"api/get":                     RegisterGet,
+	"api/put":                     RegisterPut,
 }

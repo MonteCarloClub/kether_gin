@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterGetData(r *gin.Engine, api string) {
+func RegisterGetBlockByHash(r *gin.Engine, api string) {
 	r.GET(api, func(ctx *gin.Context) {
 		req := &kdb.GetDataRequest{
 			Key: ctx.Query("key"),
@@ -23,7 +23,7 @@ func RegisterGetData(r *gin.Engine, api string) {
 	})
 }
 
-func RegisterPutData(r *gin.Engine, api string) {
+func RegisterGetAccountTransaction(r *gin.Engine, api string) {
 	r.GET(api, func(ctx *gin.Context) {
 		req := &kdb.PutDataRequest{
 			Key:   ctx.Query("key"),
@@ -50,7 +50,7 @@ func RegisterGetAccountData(r *gin.Engine, api string) {
 	})
 }
 
-func RegisterSetAccountData(r *gin.Engine, api string) {
+func RegisterTransaction(r *gin.Engine, api string) {
 	r.GET(api, func(ctx *gin.Context) {
 		req := &kdb.SetAccountDataRequest{
 			Address: ctx.Query("address"),
@@ -59,6 +59,33 @@ func RegisterSetAccountData(r *gin.Engine, api string) {
 			Nonce:   thrift.StringPtr(ctx.Query("nonce")),
 		}
 		resp, err := client.KBDClient.SetAccountData(context.Background(), req)
+		if err != nil {
+			ctx.String(http.StatusBadRequest, "%v", err.Error())
+		}
+		ctx.String(http.StatusOK, resp.String())
+	})
+}
+
+func RegisterGet(r *gin.Engine, api string) {
+	r.GET(api, func(ctx *gin.Context) {
+		req := &kdb.GetDataRequest{
+			Key: ctx.Query("key"),
+		}
+		resp, err := client.KBDClient.GetData(context.Background(), req)
+		if err != nil {
+			ctx.String(http.StatusBadRequest, "%v", err.Error())
+		}
+		ctx.String(http.StatusOK, resp.String())
+	})
+}
+
+func RegisterPut(r *gin.Engine, api string) {
+	r.GET(api, func(ctx *gin.Context) {
+		req := &kdb.PutDataRequest{
+			Key:   ctx.Query("key"),
+			Value: ctx.Query("value"),
+		}
+		resp, err := client.KBDClient.PutData(context.Background(), req)
 		if err != nil {
 			ctx.String(http.StatusBadRequest, "%v", err.Error())
 		}
